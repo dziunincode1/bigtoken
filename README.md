@@ -2,4 +2,4 @@
 Checker BigToken Account
 https://play.google.com/store/apps/details?id=com.bigtoken.consumer
 
-php bigtoken.php list.txt
+php bigtt.php list.txt
